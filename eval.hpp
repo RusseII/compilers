@@ -1,16 +1,17 @@
 #include "ast.hpp"
+#include "value.hpp"
 
-bool eval(Expr* e) {
+Value eval(Expr* e) {
     
   struct V : Expr::Visitor {
-    bool r;
-    int t;
-    void visit(Int_expr * e) { t = e->val; }
-    void visit(Bool_expr* e) { r = e->val; }
-    void visit(And_expr* e) { r = eval(e->e1) & eval(e->e2); }
-    void visit(Or_expr* e) { r = eval(e->e1) | eval(e->e2); }
-    void visit(Not_expr* e) { r = !eval(e->e1); }
-    void visit(LT_expr* e) { r = eval(e->e1) < eval(e->e2);} 
+    Value r;
+    void visit(Int_expr * e) { r.data.n = e->val; r.kind = Value_kind::int_val; }
+    void visit(Bool_expr* e) { r.data.b = e->val;  r.kind = Value_kind::bool_val; }
+    void visit(And_expr* e) { r.data.b = eval(e->e1).data.b & eval(e->e2).data.b; r.kind = Value_kind::bool_val; }
+    void visit(Or_expr* e) { r.data.b  = eval(e->e1).data.b | eval(e->e2).data.b; r.kind = Value_kind::bool_val; }
+    void visit(Not_expr* e) { r.data.b = !eval(e->e1).data.b; r.kind = Value_kind::bool_val; }
+    void visit(LT_expr* e) { r.data.n = eval(e->e1).data.n < eval(e->e2).data.n; r.kind = Value_kind::int_val; } 
+    void visit(GT_expr* e) { r.data.n = eval(e->e1).data.n > eval(e->e2).data.n; r.kind = Value_kind::int_val; }
   };
   V vis;
   e->accept(vis);

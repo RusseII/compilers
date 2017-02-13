@@ -1,0 +1,3 @@
+/home/rratcliffe/github/compilers/build/CMakeFiles/edit_cache.dir
+/home/rratcliffe/github/compilers/build/CMakeFiles/rebuild_cache.dir
+/home/rratcliffe/github/compilers/build/CMakeFiles/bool.dir

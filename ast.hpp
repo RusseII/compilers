@@ -10,6 +10,8 @@ struct Int_expr;
 struct Or_expr;
 struct Not_expr;
 struct And_expr;
+struct LT_expr;
+struct GT_expr;
 
 struct Type {
     struct Visitor;
@@ -22,7 +24,7 @@ struct Bool_type : Type { };
 
 struct Expr {
     struct Visitor;
-    virtual ~Type() = default;
+    virtual ~Expr() = default;
     virtual void accept(Visitor&) = 0; 
 };
 
@@ -31,11 +33,12 @@ struct Expr::Visitor
     virtual void visit(And_expr*)= 0;
     virtual void visit(Or_expr*) = 0;
     virtual void visit(Bool_expr*) = 0;
+    virtual void visit(Int_expr*) = 0;
     virtual void visit(Not_expr*) = 0;
     virtual void visit(LT_expr*) = 0;
     virtual void visit(GT_expr*) = 0;
 
-}
+};
 
 struct And_expr: Expr {
     Expr* e1;
@@ -56,6 +59,14 @@ struct Bool_expr : Expr {
     Bool_expr(bool b) : val(b) { }
     void accept(Visitor& v) { return v.visit(this); }
 };
+
+struct Int_expr: Expr {
+    int val;
+    Int_expr(int b) : val(b) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+
 
 struct Not_expr: Expr {
     Expr* e1;
