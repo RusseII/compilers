@@ -12,7 +12,14 @@ struct Not_expr;
 struct And_expr;
 struct LT_expr;
 struct GT_expr;
-
+struct Eq_expr;  //equal expression, opperants must be the same type: return in bool
+struct NEq_expr; //not equal expression
+struct ELT_expr; //Less or equal to expression
+struct EGT_expr; //Greater or equal expression
+struct Add_expr; //addition expression
+struct Sub_expr; //subtraction expression
+struct Mul_expr; //multiplication expression
+struct Div_expr; //divison expression
 struct Type {
     struct Visitor;
     virtual ~Type() = default;
@@ -37,6 +44,14 @@ struct Expr::Visitor
     virtual void visit(Not_expr*) = 0;
     virtual void visit(LT_expr*) = 0;
     virtual void visit(GT_expr*) = 0;
+    //virtual void visit(Eq_expr*) = 0;
+//    virtual void visit(NEq_expr*) = 0;
+    virtual void visit(ELT_expr*) = 0;
+    virtual void visit(EGT_expr*) = 0;
+    virtual void visit(Add_expr*) = 0;
+    virtual void visit(Sub_expr*) = 0;
+    virtual void visit(Mul_expr*) = 0;
+    virtual void visit(Div_expr*) = 0;
 
 };
 
@@ -87,6 +102,64 @@ struct GT_expr: Expr {
     GT_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
     void accept(Visitor& v) { return v.visit(this); }
 };
+
+//struct Eq_expr: Expr {
+//    Expr* e1;
+//    Expr* e2;
+//    Eq_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+//    void accept(Visitor& v) { return v.visit(this); }
+//};
+//
+//struct NEq_expr: Expr {
+//    Expr* e1;
+//    Expr* e2;
+//    NEq_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+//    void accept(Visitor& v) { return v.visit(this); }
+//};
+
+struct ELT_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    ELT_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+struct EGT_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    EGT_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+struct Add_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    Add_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+struct Sub_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    Sub_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+struct Mul_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    Mul_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+struct Div_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    Div_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+
 
 struct Context
 {

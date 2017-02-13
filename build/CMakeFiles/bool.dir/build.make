@@ -60,15 +60,15 @@ include CMakeFiles/bool.dir/flags.make
 CMakeFiles/bool.dir/main.cpp.o: CMakeFiles/bool.dir/flags.make
 CMakeFiles/bool.dir/main.cpp.o: ../main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rratcliffe/github/compilers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/bool.dir/main.cpp.o"
-	/usr/lib64/ccache/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bool.dir/main.cpp.o -c /home/rratcliffe/github/compilers/main.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bool.dir/main.cpp.o -c /home/rratcliffe/github/compilers/main.cpp
 
 CMakeFiles/bool.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bool.dir/main.cpp.i"
-	/usr/lib64/ccache/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rratcliffe/github/compilers/main.cpp > CMakeFiles/bool.dir/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rratcliffe/github/compilers/main.cpp > CMakeFiles/bool.dir/main.cpp.i
 
 CMakeFiles/bool.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bool.dir/main.cpp.s"
-	/usr/lib64/ccache/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rratcliffe/github/compilers/main.cpp -o CMakeFiles/bool.dir/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rratcliffe/github/compilers/main.cpp -o CMakeFiles/bool.dir/main.cpp.s
 
 CMakeFiles/bool.dir/main.cpp.o.requires:
 

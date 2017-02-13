@@ -1,1 +1,1 @@
-/usr/lib64/ccache/c++   -std=c++14   CMakeFiles/bool.dir/main.cpp.o  -o bool -rdynamic 
+/usr/bin/c++   -std=c++14   CMakeFiles/bool.dir/main.cpp.o  -o bool -rdynamic 
