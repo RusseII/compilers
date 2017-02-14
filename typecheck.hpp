@@ -80,9 +80,9 @@ Type* check(Context& cxt, Expr* e) {
         }
 
 
-        void visit(Xor_expr* e) {//bool or int? check
-            assert(check(cxt, e->e1) == &cxt.int_type && check(cxt, e->e2) == &cxt.int_type);
-            r = &cxt.int_type;
+        void visit(Xor_expr* e) {//bool or bool? check
+            assert(check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type);
+            r = &cxt.bool_type;
         }
 
         void visit(Rem_expr* e) {
@@ -94,6 +94,13 @@ Type* check(Context& cxt, Expr* e) {
             assert(check(cxt, e->e1) == &cxt.int_type);
             r = &cxt.int_type;
         }
+
+        void visit(ITE_expr* e) {
+            assert(check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type && check(cxt, e->e3) == &cxt.bool_type);
+            r = &cxt.bool_type;
+        }
+
+
 
     };
     V vis(cxt);

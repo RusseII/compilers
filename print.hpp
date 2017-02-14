@@ -22,6 +22,10 @@ needs_parens(Expr* e)
     void visit(Sub_expr* e) { r = true; }
     void visit(Mul_expr* e) { r = true; }
     void visit(Div_expr* e) { r = true; }
+    void visit(Xor_expr* e) { r = true; }
+    void visit(Rem_expr* e) { r = true; }
+    void visit(Neg_expr* e) { r = false; }
+    void visit(ITE_expr* e) { r = false; }
   };
   V vis;
   e->accept(vis);
@@ -65,13 +69,13 @@ print(Expr* e)
     }
     void visit(GT_expr* e) { 
       print_enclosed(e->e1);
-      std::cout << " >  ";
+      std::cout << " > ";
       print_enclosed(e->e2);
     }
 
     void visit(LT_expr* e) { 
       print_enclosed(e->e1);
-      std::cout << " > ";
+      std::cout << " < ";
       print_enclosed(e->e2);
     }
 
@@ -115,6 +119,31 @@ print(Expr* e)
       std::cout << " / ";
       print_enclosed(e->e2);
     }
+
+ 
+    void visit(Xor_expr* e) { 
+      print_enclosed(e->e1);
+      std::cout << " ^ ";
+      print_enclosed(e->e2);
+    }
+
+    void visit(Rem_expr* e) { 
+      print_enclosed(e->e1);
+      std::cout << " % ";
+      print_enclosed(e->e2);
+    }
+
+    void visit(Neg_expr* e) { 
+      std::cout << " - ";
+      print_enclosed(e->e1);
+    }
+
+    void visit(ITE_expr* e) { 
+      print_enclosed(e->e1);
+      std::cout << "  ";
+      print_enclosed(e->e2);
+    }
+
   };
   V vis;
   e->accept(vis);

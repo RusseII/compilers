@@ -20,6 +20,10 @@ struct Add_expr; //addition expression
 struct Sub_expr; //subtraction expression
 struct Mul_expr; //multiplication expression
 struct Div_expr; //divison expression
+struct Xor_expr; //Exclusive or expression
+struct Rem_expr; //Division remaindor
+struct Neg_expr; //Negate the expression
+struct ITE_expr;  //if e1 then e2 else e2
 struct Type {
     struct Visitor;
     virtual ~Type() = default;
@@ -52,6 +56,10 @@ struct Expr::Visitor
     virtual void visit(Sub_expr*) = 0;
     virtual void visit(Mul_expr*) = 0;
     virtual void visit(Div_expr*) = 0;
+    virtual void visit(Xor_expr*) = 0;
+    virtual void visit(Rem_expr*) = 0;
+    virtual void visit(Neg_expr*) = 0;
+    virtual void visit(ITE_expr*) = 0;
 
 };
 
@@ -80,8 +88,6 @@ struct Int_expr: Expr {
     Int_expr(int b) : val(b) { }
     void accept(Visitor& v) { return v.visit(this); }
 };
-
-
 
 struct Not_expr: Expr {
     Expr* e1;
@@ -158,6 +164,35 @@ struct Div_expr: Expr {
     Div_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
     void accept(Visitor& v) { return v.visit(this); }
 };
+struct Xor_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    Xor_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+struct Rem_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    Rem_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+struct Neg_expr: Expr {
+    Expr* e1;
+    Neg_expr(Expr* e1) : e1(e1) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+struct ITE_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    Expr* e3;
+    ITE_expr(Expr* e1, Expr* e2, Expr* e3) : e1(e1), e2(e2), e3(e3) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+
 
 
 

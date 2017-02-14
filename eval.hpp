@@ -20,9 +20,18 @@ Value eval(Expr* e) {
     void visit(Sub_expr* e) { r.data.n = eval(e->e1).data.n - eval(e->e2).data.n; r.kind = Value_kind::int_val; }
     void visit(Mul_expr* e) { r.data.n = eval(e->e1).data.n * eval(e->e2).data.n; r.kind = Value_kind::int_val; }
     void visit(Div_expr* e) { r.data.n = eval(e->e1).data.n / eval(e->e2).data.n; r.kind = Value_kind::int_val; }
-    
-    
-    
+    void visit(Xor_expr* e) { r.data.n = eval(e->e1).data.n ^ eval(e->e2).data.n; r.kind = Value_kind::int_val; }
+    void visit(Rem_expr* e) { r.data.n = eval(e->e1).data.n % eval(e->e2).data.n; r.kind = Value_kind::int_val; }
+    void visit(Neg_expr* e) { r.data.n = (0 -eval(e->e1).data.n);  r.kind = Value_kind::int_val; }
+    void visit(ITE_expr* e) {  
+      if ((eval(e->e1).data.b)) {
+          r.data.b=eval(e->e2).data.b;
+       }
+      else {
+          r.data.b=eval(e->e3).data.b;
+      }
+      r.kind = Value_kind::bool_val;
+    }    
   };
   V vis;
   e->accept(vis);
