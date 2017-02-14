@@ -25,12 +25,24 @@ eval.hpp
 /home/rratcliffe/github/compilers/eval.hpp
 print.hpp
 /home/rratcliffe/github/compilers/print.hpp
+typecheck.hpp
+/home/rratcliffe/github/compilers/typecheck.hpp
 
 /home/rratcliffe/github/compilers/print.hpp
 ast.hpp
 /home/rratcliffe/github/compilers/ast.hpp
 iostream
 -
+
+/home/rratcliffe/github/compilers/typecheck.hpp
+iostream
+-
+cassert
+-
+ast.hpp
+/home/rratcliffe/github/compilers/ast.hpp
+value.hpp
+/home/rratcliffe/github/compilers/value.hpp
 
 /home/rratcliffe/github/compilers/value.hpp
 
