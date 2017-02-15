@@ -100,6 +100,17 @@ Type* check(Context& cxt, Expr* e) {
             r = &cxt.bool_type;
         }
 
+        void visit(Eq_expr* e) {
+            assert(check(cxt, e->e1) == &cxt.int_type && check(cxt, e->e2) == &cxt.int_type || check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type);
+            r = &cxt.int_type;
+        }
+
+        void visit(NEq_expr* e) {
+            assert(check(cxt, e->e1) == &cxt.int_type && check(cxt, e->e2) == &cxt.int_type || check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type);
+            r = &cxt.int_type;
+        }
+
+
 
 
     };

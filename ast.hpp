@@ -48,8 +48,8 @@ struct Expr::Visitor
     virtual void visit(Not_expr*) = 0;
     virtual void visit(LT_expr*) = 0;
     virtual void visit(GT_expr*) = 0;
-    //virtual void visit(Eq_expr*) = 0;
-//    virtual void visit(NEq_expr*) = 0;
+    virtual void visit(Eq_expr*) = 0;
+    virtual void visit(NEq_expr*) = 0;
     virtual void visit(ELT_expr*) = 0;
     virtual void visit(EGT_expr*) = 0;
     virtual void visit(Add_expr*) = 0;
@@ -109,19 +109,19 @@ struct GT_expr: Expr {
     void accept(Visitor& v) { return v.visit(this); }
 };
 
-//struct Eq_expr: Expr {
-//    Expr* e1;
-//    Expr* e2;
-//    Eq_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
-//    void accept(Visitor& v) { return v.visit(this); }
-//};
-//
-//struct NEq_expr: Expr {
-//    Expr* e1;
-//    Expr* e2;
-//    NEq_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
-//    void accept(Visitor& v) { return v.visit(this); }
-//};
+struct Eq_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    Eq_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
+
+struct NEq_expr: Expr {
+    Expr* e1;
+    Expr* e2;
+    NEq_expr(Expr* e1, Expr* e2) : e1(e1), e2(e2) { }
+    void accept(Visitor& v) { return v.visit(this); }
+};
 
 struct ELT_expr: Expr {
     Expr* e1;

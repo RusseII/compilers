@@ -144,6 +144,19 @@ print(Expr* e)
       print_enclosed(e->e2);
     }
 
+    void visit(Eq_expr* e) { 
+      print_enclosed(e->e1);
+      std::cout << " == ";
+      print_enclosed(e->e2);
+    }
+
+    void visit(NEq_expr* e) { 
+      print_enclosed(e->e1);
+      std::cout << " !=  ";
+      print_enclosed(e->e2);
+    }
+
+
   };
   V vis;
   e->accept(vis);
