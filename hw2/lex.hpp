@@ -55,14 +55,16 @@ struct Lexer {
     :first(&s[0]), last(&s[s.length()-1]) {}
     
     //consume is used to add the next char to chars, and move to the next character in the string
-    void consume() {
-        chars += *first++;
+    void consume(bool r = false) {
+        if (r == false) {
+            chars="";       
+            *first++;
+        }
+        else {
+            chars += *first++;
+        } 
     }
 
-    bool eof() const {
-    return first == last;
-    }
-   
    //used to peak at the current character - important in case statment to check if character matches operator
     char lookahead() const {
         return *first;
@@ -179,7 +181,7 @@ Token *Lexer::next() {
                             consume();
                             if (lookahead() == 'e') {
                                 consume();
-                             return new Token(True_token,0);
+                             return new Token(False_token,0);
                             }
                          }
                       }
@@ -198,11 +200,10 @@ Token *Lexer::next() {
         case '6':
         case '7':
         case '8':
-        case '9': consume();
-                       while(!eof() && isdigit(lookahead())) { //build the int
-                           consume();
+        case '9': consume(true);
+                       while(first!=last and isdigit(lookahead())) { //build the int
+                           consume(true);
                        }
-                       chars="";
                        return new Token(Int_token, stoi(chars));
 
     }
