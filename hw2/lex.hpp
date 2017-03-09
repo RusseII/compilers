@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-enum Token_kind {
+enum Token_kind { //used to represent the token_kind
     Bit_token,
     Xor_token, 
     Comment_token,
@@ -33,7 +33,8 @@ enum Token_kind {
     Space_token
 };
 
-struct Token{
+//represents a token, we eventually will build a vector of tokens
+struct Token { 
     int kind;
     int att;
     Token(Token_kind t, int n)
@@ -41,33 +42,36 @@ struct Token{
     virtual ~Token() = default;
 };
 
-struct Lexer {
-    const char* first;
+//defines the functions for lexing input
+struct Lexer { 
+    const char* first; //will point to begining of string so we can iterate through it
     const char* last;
-    
-    string chars;
 
-    Lexer() {}
+    // built a sequence of characters. Used for integeres like 22
+    // since 2 + 2 = 4 (we want it to be 22)
+    string chars;
 
     Lexer(string s)
     :first(&s[0]), last(&s[s.length()-1]) {}
+    
+    //consume is used to add the next char to chars, and move to the next character in the string
+    void consume() {
+        chars += *first++;
+    }
 
     bool eof() const {
     return first == last;
     }
-    
+   
+   //used to peak at the current character - important in case statment to check if character matches operator
     char lookahead() const {
         return *first;
     }
-
-    void consume() {
-        //cout<<*first;
-        chars += *first++;
-    }
     
-    Token *next(); //seperation  
+    Token *next(); //seperation so that next can be defined outside this class 
 };
 
+//checks the string creates tokens for each operator or number
 Token *Lexer::next() {
     switch(lookahead()) {
 
@@ -164,7 +168,7 @@ Token *Lexer::next() {
                   }
                   else {
                      cerr<<"ERROR";
-                 } 
+                  } 
 
         case 'f': consume();
                   if (lookahead() == 'a') {
@@ -182,7 +186,7 @@ Token *Lexer::next() {
                   }
                   else {
                      cerr<<"ERROR";
-                 } 
+                  } 
 
 
         case '0':
@@ -198,6 +202,7 @@ Token *Lexer::next() {
                        while(!eof() && isdigit(lookahead())) { //build the int
                            consume();
                        }
+                       chars="";
                        return new Token(Int_token, stoi(chars));
 
     }
