@@ -80,6 +80,18 @@ int main() {
      std::cout << " == " << eval(e).data.n << '\n';
 
 
+     e =  new Eq_expr( new Bool_expr(false), new Bool_expr(true));
+     check(cxt,e);
+     print(e);
+     std::cout << " == " << eval(e).data.n << '\n';
+
+
+     e =  new NEq_expr( new Bool_expr(false), new Bool_expr(true));
+     check(cxt,e);
+     print(e);
+     std::cout << " == " << eval(e).data.n << '\n';
+
+
 
 
 

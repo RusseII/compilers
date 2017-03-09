@@ -140,7 +140,7 @@ print(Expr* e)
 
     void visit(ITE_expr* e) { 
       print_enclosed(e->e1);
-      std::cout << "  ";
+      std::cout << " if ";
       print_enclosed(e->e2);
     }
 
