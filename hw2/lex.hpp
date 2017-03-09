@@ -5,8 +5,12 @@
 using namespace std;
 
 enum Token_kind {
-    Eof_token,   
+    Bit_token,
+    Xor_token, 
+    Comment_token,
     LT_token,
+    True_token,
+    False_token,
     GT_token,
     Add_token,
     Sub_token,
@@ -25,7 +29,8 @@ enum Token_kind {
     Eq_token,
     Not_token,
     If_token,
-    Then_token
+    Then_token,
+    Space_token
 };
 
 struct Token{
@@ -64,10 +69,14 @@ struct Lexer {
 };
 
 Token *Lexer::next() {
-    if (lookahead()==' ') {
-        consume();
-    }
     switch(lookahead()) {
+
+        case ' ': consume();
+                  return new Token(Space_token, 0);
+
+        case '#': consume();
+                  return new Token(Comment_token, 0);
+
         case '<': consume();
             if (lookahead() == '=') {
                 consume(); 
@@ -75,14 +84,13 @@ Token *Lexer::next() {
             }     
             return new Token(LT_token,0);
 
-
-
         case '>': consume();
                   if (lookahead() == '=') {
                       consume();
                       return new Token(EGT_token, 0);
                   }
                   return new Token(GT_token, 0);
+
         case '|': consume();
                   if(lookahead() == '|') {
                       consume();
@@ -91,6 +99,7 @@ Token *Lexer::next() {
                   else {
                       cerr<< "ERROR";
                   }
+                  
         case '!': consume();
                   if (lookahead() == '='){
                       consume();
@@ -98,6 +107,7 @@ Token *Lexer::next() {
                   } else {
                       return new Token(Not_token, 0);
                   }
+
         case '=': consume();
                   if (lookahead() == '='){
                       consume();
@@ -105,25 +115,34 @@ Token *Lexer::next() {
                   } else {
                       cerr << "ERROR!";
                   }
+
         case '/': consume();
                   return new Token(Div_token, 0);
-                  consume();
+
         case '(': consume();
                   return new Token(RP_token, 0);
+                  
         case ')': consume();
                   return new Token(LP_token, 0);
+
         case '+': consume();
                   return new Token(Add_token, 0);
+                  
         case '*': consume();
                   return new Token(Mul_token, 0);
+
         case '%': consume();
                   return new Token(Mod_token, 0);
+
         case '-': consume();
                   return new Token(Sub_token, 0);
+
         case '?': consume();
                       return new Token(If_token, 0);
+
         case ':': consume();
                       return new Token(Then_token, 0);
+
         case '&': consume();
                   if (lookahead() == '&') {
                       consume();
@@ -132,7 +151,40 @@ Token *Lexer::next() {
                   else {
                       cerr<<"ERROR";
                   }
-        case ' ': cerr<<"ERR";
+        case 't': consume();
+                  if (lookahead() == 'r') {
+                      consume();
+                      if (lookahead() == 'u') {
+                         consume();
+                         if (lookahead() == 'e') {
+                             consume();
+                             return new Token(True_token,0);
+                         }
+                      }
+                  }
+                  else {
+                     cerr<<"ERROR";
+                 } 
+
+        case 'f': consume();
+                  if (lookahead() == 'a') {
+                      consume();
+                      if (lookahead() == 'l') {
+                         consume();
+                         if (lookahead() == 's') {
+                            consume();
+                            if (lookahead() == 'e') {
+                                consume();
+                             return new Token(True_token,0);
+                            }
+                         }
+                      }
+                  }
+                  else {
+                     cerr<<"ERROR";
+                 } 
+
+
         case '0':
         case '1':
         case '2':
@@ -147,8 +199,6 @@ Token *Lexer::next() {
                            consume();
                        }
                        return new Token(Int_token, stoi(chars));
-
-
 
     }
 }

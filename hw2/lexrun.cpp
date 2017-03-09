@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "lex.hpp"
 #include <vector>
 #include "ast.hpp"
@@ -11,7 +10,7 @@ int main() {
     while (true) {
         string in;
         getline(cin, in);    
-        if (in != "") {
+        if (in != "") { //ignore blanks
            Lexer lex = Lexer(in);
 
             while(lex.first != lex.last){
