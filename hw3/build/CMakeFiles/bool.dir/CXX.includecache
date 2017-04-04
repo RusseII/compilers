@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/russellratcliffe/github/compilers/hw3/ast.hpp
+cassert
+-
+
+/Users/russellratcliffe/github/compilers/hw3/lex.hpp
+string
+-
+iostream
+-
+
+/Users/russellratcliffe/github/compilers/hw3/lexrun.cpp
+iostream
+-
+lex.hpp
+/Users/russellratcliffe/github/compilers/hw3/lex.hpp
+vector
+-
+ast.hpp
+/Users/russellratcliffe/github/compilers/hw3/ast.hpp
+
