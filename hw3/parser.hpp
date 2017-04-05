@@ -42,6 +42,46 @@ struct Parser {
             return consume();
         }
     }
+
+
+    Expr* add_exp() {
+        Expr* e1= mul_exp();
+        while (true) {
+            if (match(Add_token)) {
+                Expr* e2 = mul_exp(); //define this
+                e1 = new Add_expr(e1,e2);
+             }
+            else if (match(Sub_token)) {
+                Expr* e2 = mul_exp(); //define this
+                e1 = new Sub_expr(e1,e2);
+            }
+            else
+                break;
+        }
+        return e1;
+    }
+
+    Expr* mul_exp() {
+        Expr e1= unanry_exp();
+        while (true) {
+            if (match(Mul_token)) {
+                Expr* e2 = mul_exp(); //define this
+                e1 = new Mul_expr(e1,e2);
+             }
+            else if (match(Div_token)) {
+                Expr* e2 = mul_exp(); //define this
+                e1 = new Div_expr(e1,e2)
+            }
+            else if (match(Mod_token)) {
+                Expr* e2 = Mul_exp(); //define this
+                e1 = new Rem_expr(e1,e2);
+            }
+            else
+                break;
+        }
+        return e1;
+    }
+    
 };
     
 
