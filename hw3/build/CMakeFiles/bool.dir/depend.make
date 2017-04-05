@@ -4,4 +4,6 @@
 CMakeFiles/bool.dir/lexrun.cpp.o: ../ast.hpp
 CMakeFiles/bool.dir/lexrun.cpp.o: ../lex.hpp
 CMakeFiles/bool.dir/lexrun.cpp.o: ../lexrun.cpp
+CMakeFiles/bool.dir/lexrun.cpp.o: ../parser.hpp
+CMakeFiles/bool.dir/lexrun.cpp.o: ../statement.hpp
 

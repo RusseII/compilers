@@ -2,6 +2,7 @@
 #include "lex.hpp"
 #include <vector>
 #include "ast.hpp"
+#include "parser.hpp"
 using namespace std;
 
 int main() {
@@ -21,6 +22,7 @@ int main() {
            for(int i = 0; i < tokens.size(); i++) {
                cout << "<" << tokens[i]->kind << "," << tokens[i]->att <<">  ";
            }
+        //Parser(tokens) 
         }
     }
 }
