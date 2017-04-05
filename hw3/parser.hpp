@@ -4,14 +4,14 @@
 #include "lex.hpp"
 #include <vector>
 #include "ast.hpp"
-#include <vector>
 #include <sstream>
 #include "statement.hpp"
+#include <deque>
 
 struct Parser {
-    vector<Token*> tokens;
+    deque<Token*> tokens;
     
-    Parser(vector<Token*> tokens): tokens(tokens)  {}
+    Parser(deque<Token*> tokens): tokens(tokens)  {}
 
     Token* consume() {
         assert (!tokens.empty()); 

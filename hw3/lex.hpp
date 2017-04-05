@@ -36,7 +36,7 @@ enum Token_kind { //used to represent the token_kind
 
 //represents a token, we eventually will build a vector of tokens
 struct Token { 
-    int kind;
+    Token_kind kind;
     int att;
     Token(Token_kind t, int n)
         :kind(t), att(n) {}
