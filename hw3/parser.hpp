@@ -62,7 +62,7 @@ struct Parser {
     }
 
     Expr* mul_exp() {
-        Expr e1= unanry_exp();
+        Expr* e1= unary_exp();
         while (true) {
             if (match(Mul_token)) {
                 Expr* e2 = mul_exp(); //define this
@@ -70,10 +70,10 @@ struct Parser {
              }
             else if (match(Div_token)) {
                 Expr* e2 = mul_exp(); //define this
-                e1 = new Div_expr(e1,e2)
+                e1 = new Div_expr(e1,e2);
             }
             else if (match(Mod_token)) {
-                Expr* e2 = Mul_exp(); //define this
+                Expr* e2 = mul_exp(); //define this
                 e1 = new Rem_expr(e1,e2);
             }
             else
@@ -82,6 +82,20 @@ struct Parser {
         return e1;
     }
     
+    Expr* unary_exp() {
+        if (match(Neg_token)) {
+            Expr* e = unary_exp();
+            return new Neg_expr(e);
+        }
+        else {
+            return primary_exp();
+        }
+    }
+
+    Expr* primary_exp() {
+    }
+
+
 };
     
 

@@ -24,7 +24,7 @@ enum Token_kind { //used to represent the token_kind
     Or_token,
     RP_token,
     LP_token,
-    Neq_token,
+    Neg_token,
     EGT_token,
     Eq_token,
     Not_token,
@@ -110,7 +110,7 @@ Token *Lexer::next() {
         case '!': consume();
                   if (lookahead() == '='){
                       consume();
-                      return new Token(Neq_token, 0);
+                      return new Token(Neg_token, 0);
                   } else {
                       return new Token(Not_token, 0);
                   }
