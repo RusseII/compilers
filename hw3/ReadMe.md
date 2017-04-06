@@ -13,11 +13,11 @@ $ make
 $ ./bool
 ```
 
-##Input 
+## Input 
 
 The input to the parser is a sequence of tokens produced from the lexer
 
-##Ouput
+## Ouput
 
 The output is an evaluated Abstract Sytax Tree
 
