@@ -1,4 +1,4 @@
-# A Simple Compiler Lexer Implementation 
+# A Simple Compiler Parser Implementation 
 ###### by Russell Ratcliffe
 
 ## How to run program on Linux
