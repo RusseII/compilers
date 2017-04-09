@@ -41,6 +41,9 @@ struct Parser {
         if (lookahead() == k) {
             return consume();
         }
+        else {
+            return nullptr;
+        }
     }
 
 
@@ -93,6 +96,35 @@ struct Parser {
     }
 
     Expr* primary_exp() {
+        switch(lookahead()) {
+            case Int_token:
+                Token* tok = consume();
+                return new Int_expr(tok->kind); //#KIND
+
+            case True_token:
+                consume();
+                return new Bool_expr(true);
+
+            case False_token:
+                consume();
+                return new Bool_expr(false);
+                
+            case LP_token:
+                consume();
+                Expr* e = add_exp();
+                if (match(RP_token)) {
+                return e;
+                }
+                else {
+                    cerr<<"Error in primarry_exp, invalid character that does not match anything";
+                }
+            }
+
+
+    }
+
+
+    Expr* expression(){
     }
 
 
